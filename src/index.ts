@@ -3,6 +3,7 @@ import express from 'express';
 import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
+import mongoose from 'mongoose';
 
 import config from './config/config';
 import logging from './config/logging';
@@ -14,6 +15,16 @@ const app = express();
 
 /** Server Handling */
 const httpServer = http.createServer(app);
+
+/** Connect to Mongo */
+mongoose
+    .connect(config.mongo.url, config.mongo.options)
+    .then(() => {
+        logging.info('Mongo Connected');
+    })
+    .catch((error) => {
+        logging.error(`Mongo Not Connected - ${error.message}`);
+    });
 
 /** Log the request */
 app.use((req, res, next) => {
