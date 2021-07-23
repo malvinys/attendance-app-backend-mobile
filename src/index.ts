@@ -1,6 +1,5 @@
 import http from 'http';
 import express from 'express';
-import fileupload from "express-fileupload";
 import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
@@ -8,10 +7,7 @@ import compression from "compression";
 import config from './config/config';
 import logging from './config/logging';
 
-import { checkAuthJwt } from './middleware/AuthMiddleware';
-
 /** import Routes */
-import UploadRoutes from "./routes/UploadRoutes";
 import TokenRoutes from "./routes/TokenRoutes";
 
 const app = express();
@@ -33,7 +29,6 @@ app.use((req, res, next) => {
 /** Parse the body of the request */
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(fileupload());
 
 /** Rules of our API */
 app.use(helmet());
@@ -54,7 +49,6 @@ app.use((req, res, next) => {
 /** Routes */
 app.use(express.static('public'));
 app.use('/api/v1/token', TokenRoutes);
-app.use('/api/v1/upload', checkAuthJwt, UploadRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {
