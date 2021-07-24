@@ -11,6 +11,7 @@ import logging from './config/logging';
 /** import Routes */
 import TokenRoutes from "./routes/TokenRoutes";
 import AuthRoutes from "./routes/AuthRoutes";
+import LookupRoutes from "./routes/LookupRoutes";
 
 import { checkAuthJwt } from './middleware/AuthMiddleware';
 
@@ -64,6 +65,7 @@ app.use((req, res, next) => {
 app.use(express.static('public'));
 app.use('/api/v1/token', TokenRoutes);
 app.use('/api/v1/auth', checkAuthJwt, AuthRoutes);
+app.use('/api/v1/lookup', checkAuthJwt, LookupRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {
