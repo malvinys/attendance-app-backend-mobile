@@ -4,7 +4,8 @@ interface IUsers extends Document {
     email: string;
     password: string;
     name: string;
-    rolesId: number;
+    rolesId: string;
+    rolesName: string;
     status: number;
 }
 

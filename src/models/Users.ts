@@ -6,9 +6,10 @@ const UsersSchema: Schema = new Schema(
         email: { type: String, required: true },
         password: { type: String, required: true },
         name: { type: String, required: true },
-        rolesId: { type: Number, required: true },
+        rolesId: { type: String, required: true },
+        rolesName: { type: String, required: true },
         status: { type: Number, required: true },
-        createdBy: { type: Number, required: true },
+        createdBy: { type: String, required: true },
         createdAt: { type: Date, required: true },
     },
 );
