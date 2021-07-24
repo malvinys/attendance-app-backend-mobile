@@ -5,7 +5,7 @@ import UserAttendances from '../models/UserAttendances';
 
 const getActivities = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { userId } = req.query;
+        const { userId } = req.params;
 
         /** validate request */
         if(!userId) {
