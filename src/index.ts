@@ -12,6 +12,7 @@ import logging from './config/logging';
 import TokenRoutes from "./routes/TokenRoutes";
 import AuthRoutes from "./routes/AuthRoutes";
 import LookupRoutes from "./routes/LookupRoutes";
+import ActivityRoutes from "./routes/ActivityRoutes";
 
 import { checkAuthJwt } from './middleware/AuthMiddleware';
 
@@ -66,6 +67,7 @@ app.use(express.static('public'));
 app.use('/api/v1/token', TokenRoutes);
 app.use('/api/v1/auth', checkAuthJwt, AuthRoutes);
 app.use('/api/v1/lookup', checkAuthJwt, LookupRoutes);
+app.use('/api/v1/activity', checkAuthJwt, ActivityRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {
