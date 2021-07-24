@@ -38,7 +38,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
                 '_id': user.id,
                 email: user.email,
                 name: user.name,
-                roleId: user.roleId,
+                rolesId: user.rolesId,
                 status: user.status
             }
         });
