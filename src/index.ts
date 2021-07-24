@@ -10,6 +10,9 @@ import logging from './config/logging';
 
 /** import Routes */
 import TokenRoutes from "./routes/TokenRoutes";
+import AuthRoutes from "./routes/AuthRoutes";
+
+import { checkAuthJwt } from './middleware/AuthMiddleware';
 
 const app = express();
 
@@ -60,6 +63,7 @@ app.use((req, res, next) => {
 /** Routes */
 app.use(express.static('public'));
 app.use('/api/v1/token', TokenRoutes);
+app.use('/api/v1/auth', checkAuthJwt, AuthRoutes);
 
 /** Error handling */
 app.use((req, res, next) => {

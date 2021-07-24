@@ -4,9 +4,11 @@ dotenv.config();
 
 const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'DEV';
 
+const MONGO_HOST = process.env.MONGO_URL || `localhost:27017`;
 const MONGO_USERNAME = process.env.MONGO_USERNAME || 'superuser';
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'supersecretpassword';
-const MONGO_HOST = process.env.MONGO_URL || `localhost:27017`;
+const MONGO_DATABASE = process.env.MONGO_DATABASE || 'dbname';
+
 const MONGO_OPTIONS = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -21,7 +23,7 @@ const MONGO = {
     password: MONGO_PASSWORD,
     username: MONGO_USERNAME,
     options: MONGO_OPTIONS,
-    url: `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}`
+    url: `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DATABASE}`
 };
 
 const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
